@@ -48,23 +48,38 @@ def save(path, state):
     os.replace(tmp, path)
 
 
-def apply_fetch(state, posts):
+def apply_fetch(state, posts, jp_index=None):
     """取得した記事を state に反映し、差分サマリを返す。
 
     初回実行（runs == 0）は「全部が新着」になってしまうので基準日を
     公開日にそろえ、新着としては扱わない。
+
+    jp_index を渡すと、日本語版がある記事にその情報を紐づける。
     """
+    import jp_fetcher
+
     stamp = now_iso()
     is_baseline = state.get("runs", 0) == 0
     known = state.get("posts", {})
 
-    added, updated = [], []
+    added, updated, translated = [], [], []
     fresh = {}
 
     for post in posts:
         pid = post["id"]
         prev = known.get(pid)
         record = dict(post)
+
+        if jp_index is not None:
+            jp = jp_fetcher.match(post["url"], jp_index)
+            record["jp"] = {"title": jp["title"], "url": jp["url"]} if jp else None
+            # 日本語版の記録がまだ無い回（初回・機能追加直後）は基準づくりなので
+            # 「新しく和訳が出た」とは数えない
+            jp_known = prev is not None and "jp" in prev
+            if jp and jp_known and not prev.get("jp") and not is_baseline:
+                translated.append(record)
+        elif prev is not None:
+            record["jp"] = prev.get("jp")
         if prev is None:
             record["first_seen"] = post["published_at"] if is_baseline else stamp
             record["added_in_run"] = 0 if is_baseline else state["runs"] + 1
@@ -96,6 +111,8 @@ def apply_fetch(state, posts):
         "added": added,
         "updated": updated,
         "removed": removed,
+        "translated": translated,
+        "jp_total": sum(1 for r in fresh.values() if r.get("jp")),
     }
 
 
@@ -110,6 +127,9 @@ def append_history(path, diff):
         "added": [{"title": p["title"], "url": p["url"]} for p in diff["added"]],
         "updated": [{"title": p["title"], "url": p["url"]} for p in diff["updated"]],
         "removed": [{"title": p["title"], "url": p["url"]} for p in diff["removed"]],
+        "translated": [{"title": p["title"], "jp": p["jp"]["title"]}
+                       for p in diff.get("translated", [])],
+        "jp_total": diff.get("jp_total", 0),
     }
     with open(path, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")

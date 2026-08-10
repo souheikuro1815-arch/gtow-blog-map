@@ -17,6 +17,7 @@ import webbrowser
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import fetcher
+import jp_fetcher
 import renderer
 import store
 
@@ -58,10 +59,19 @@ def main(argv):
         print("ネット接続を確認して、少し待ってからもう一度実行してください。")
         return 1
     posts = [fetcher.normalize(p) for p in raw]
-    print("  {} 件を取得しました".format(len(posts)))
+    print("  英語版 {} 件を取得しました".format(len(posts)))
+
+    jp_posts = jp_fetcher.fetch_posts()
+    if jp_posts:
+        print("  日本語版 {} 件を取得しました".format(len(jp_posts)))
+        jp_index = jp_fetcher.build_index(jp_posts)
+    else:
+        # 日本語サイトが落ちていても英語版の更新は止めない
+        print("  日本語版は取得できませんでした（前回の対応づけを維持します）")
+        jp_index = None
 
     state = store.load(STATE_PATH)
-    diff = store.apply_fetch(state, posts)
+    diff = store.apply_fetch(state, posts, jp_index)
 
     if dry_run:
         print("--dry-run のため保存しませんでした。")
@@ -91,11 +101,13 @@ def main(argv):
 
 def report(diff):
     if diff["baseline"]:
-        print("\n[初回実行] 現在の {} 件を基準として記録しました。".format(diff["total"]))
+        print("\n[初回実行] 現在の {} 件を基準として記録しました（うち日本語版あり {} 件）。".format(
+            diff["total"], diff["jp_total"]))
         print("次回以降、ここから増えた記事が「新着」として出ます。")
         return
 
-    print("\n[{}回目の実行] 記事は全 {} 件".format(diff["run"], diff["total"]))
+    print("\n[{}回目の実行] 記事は全 {} 件（うち日本語版あり {} 件）".format(
+        diff["run"], diff["total"], diff["jp_total"]))
     if diff["added"]:
         print("\n■ 新しく出た記事 {} 件".format(len(diff["added"])))
         for p in diff["added"]:
@@ -107,6 +119,11 @@ def report(diff):
         print("\n■ 内容が更新された記事 {} 件".format(len(diff["updated"])))
         for p in diff["updated"]:
             print("  ・{}".format(p["title"]))
+    if diff["translated"]:
+        print("\n■ 新しく日本語版が出た記事 {} 件".format(len(diff["translated"])))
+        for p in diff["translated"]:
+            print("  ・{}".format(p["jp"]["title"]))
+            print("    {}".format(p["jp"]["url"]))
     if diff["removed"]:
         print("\n■ 公開が取り下げられた記事 {} 件".format(len(diff["removed"])))
         for p in diff["removed"]:

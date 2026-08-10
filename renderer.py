@@ -62,7 +62,10 @@ def build_view_model(state):
         is_updated = bool(changed is not None and changed >= cutoff)
 
         published = store.parse_dt(record.get("published_at"))
+        jp = record.get("jp") or None
         posts.append({
+            "jp_title": jp["title"] if jp else "",
+            "jp_url": jp["url"] if jp else "",
             "title": record.get("title", ""),
             "url": record.get("url", ""),
             "excerpt": _shorten(record.get("excerpt", "")),
@@ -99,6 +102,7 @@ def build_view_model(state):
         "total": len(posts),
         "new_count": sum(1 for p in posts if p["new"]),
         "upd_count": sum(1 for p in posts if p["upd"]),
+        "jp_count": sum(1 for p in posts if p["jp_url"]),
         "runs": state.get("runs", 0),
         "last_run": (state.get("last_run_at") or "")[:16].replace("T", " ") + " UTC",
         "window": NEW_WINDOW_DAYS,
@@ -205,6 +209,9 @@ li.item:first-child{border-top:0}
 .t{font-size:15px;font-weight:600;text-decoration:none;line-height:1.45;
   text-wrap:balance}
 .t:hover{color:var(--accent)}
+.jp{display:block;margin-top:3px;font-size:13.5px;color:var(--accent);
+  text-decoration:none;line-height:1.5}
+.jp:hover{text-decoration:underline}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
   color:var(--muted);font-size:12px;margin-top:5px}
 .tag{padding:2px 8px;border:1px solid var(--line);border-radius:20px;cursor:pointer}
@@ -283,9 +290,10 @@ const esc = s => String(s).replace(/[&<>"]/g,
 
 function stats(){
   document.getElementById('sub').textContent =
-    `最終更新 ${D.last_run}　/　これまでの取得回数 ${D.runs}回　/　出典 blog.gtowizard.com`;
+    `最終更新 ${D.last_run}　/　これまでの取得回数 ${D.runs}回`
+    + `　/　出典 blog.gtowizard.com ・ japan.gtowizard.com`;
   document.getElementById('stats').innerHTML = [
-    ['全記事', D.total], ['カテゴリ', Object.keys(LABEL).length],
+    ['全記事', D.total], ['日本語版あり', D.jp_count], ['カテゴリ', Object.keys(LABEL).length],
     [`新着（${D.window}日）`, D.new_count], [`更新（${D.window}日）`, D.upd_count],
   ].map(([k, v]) => `<div class="stat"><b>${v}</b><span>${k}</span></div>`).join('');
 }
@@ -298,6 +306,12 @@ function controls(){
            + `<span class="n">${D.new_count}</span></button>`;
   let sel = `<option value="all">すべての記事（${D.total}）</option>`
           + `<option value="new">🆕 新着（${D.new_count}）</option>`;
+  side += `<button class="chip" data-f="jp"><span>🇯🇵 日本語版あり</span>`
+        + `<span class="n">${D.jp_count}</span></button>`
+        + `<button class="chip" data-f="nojp"><span>未訳（英語のみ）</span>`
+        + `<span class="n">${D.total - D.jp_count}</span></button>`;
+  sel += `<option value="jp">🇯🇵 日本語版あり（${D.jp_count}）</option>`
+       + `<option value="nojp">未訳・英語のみ（${D.total - D.jp_count}）</option>`;
   if (D.upd_count) {
     side += `<button class="chip" data-f="upd"><span>✏️ 更新あり</span>`
           + `<span class="n">${D.upd_count}</span></button>`;
@@ -328,11 +342,14 @@ function controls(){
 function matches(p){
   if (query) {
     const q = query.toLowerCase();
-    if (!(p.title + ' ' + p.excerpt).toLowerCase().includes(q)) return false;
+    /* 日本語タイトルも検索対象にするので、日本語で探しても引っかかる */
+    if (!(p.title + ' ' + p.excerpt + ' ' + p.jp_title).toLowerCase().includes(q)) return false;
   }
   if (filter === 'all') return true;
   if (filter === 'new') return p.new;
   if (filter === 'upd') return p.upd;
+  if (filter === 'jp') return !!p.jp_url;
+  if (filter === 'nojp') return !p.jp_url;
   return p.tags.includes(filter);
 }
 
@@ -352,8 +369,13 @@ function card(p){
                + (p.upd ? `<span class="badge upd">更新</span>` : '');
   const tags = p.tags.map(s =>
     `<span class="tag" data-t="${esc(s)}">${esc(LABEL[s] || s)}</span>`).join('');
+  const jp = p.jp_url
+    ? `<a class="jp" href="${esc(p.jp_url)}" target="_blank" rel="noopener"`
+      + ` title="日本語版を開く">🇯🇵 ${esc(p.jp_title)}</a>`
+    : '';
   return `<li class="item">`
     + `<a class="t" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+    + jp
     + `<div class="meta">${badges}<span>${p.date}</span>`
     + (p.read ? `<span>${p.read}分</span>` : '') + tags + `</div>`
     + (p.excerpt ? `<div class="ex">${esc(p.excerpt)}</div>` : '')
