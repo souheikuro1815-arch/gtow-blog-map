@@ -136,115 +136,138 @@ PAGE_TITLE = "<title>GTO Wizard ブログ記事マップ</title>\n"
 
 
 STYLE = r"""<style>
-/* 明るいテーマ（既定）。ポーカーのフェルト緑を差し色に、緑寄りの温かいグレーを地に */
+/* 配色は Google Search Console に合わせている。
+   明るいテーマ：白いカードを薄いグレー地に置き、青をアクセントにする */
 :root{
-  --bg:#f7f7f5; --panel:#ffffff; --ink:#1c1c1a; --muted:#6b6b66;
-  --line:#e3e3de; --accent:#2f6f4f; --accent-soft:#e6f0ea; --on-accent:#ffffff;
-  --new:#b4531a; --new-soft:#fbecdf; --upd:#3a5f9e; --upd-soft:#e6ecf7;
+  --bg:#f8f9fa; --panel:#ffffff; --ink:#202124; --muted:#5f6368;
+  --line:#dadce0; --hover:#f1f3f4;
+  --accent:#1a73e8; --accent-soft:#e8f0fe; --on-accent:#1967d2;
+  --new:#188038; --new-soft:#e6f4ea; --upd:#1967d2; --upd-soft:#e8f0fe;
 }
 /* 端末が暗いテーマのとき（明るいテーマを明示指定した場合は除く） */
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#16171a; --panel:#1e2024; --ink:#e9e9e6; --muted:#9a9a94;
-    --line:#2e3138; --accent:#7fc9a2; --accent-soft:#22322a; --on-accent:#10221a;
-    --new:#e2a06a; --new-soft:#33261c; --upd:#8fb0e6; --upd-soft:#1e2735;
+    --bg:#202124; --panel:#292a2d; --ink:#e8eaed; --muted:#9aa0a6;
+    --line:#3c4043; --hover:#35363a;
+    --accent:#8ab4f8; --accent-soft:#283b5b; --on-accent:#8ab4f8;
+    --new:#81c995; --new-soft:#1e3a29; --upd:#8ab4f8; --upd-soft:#1f3a5f;
   }
 }
 /* 暗いテーマを明示指定したとき */
 :root[data-theme="dark"]{
-  --bg:#16171a; --panel:#1e2024; --ink:#e9e9e6; --muted:#9a9a94;
-  --line:#2e3138; --accent:#7fc9a2; --accent-soft:#22322a; --on-accent:#10221a;
-  --new:#e2a06a; --new-soft:#33261c; --upd:#8fb0e6; --upd-soft:#1e2735;
+  --bg:#202124; --panel:#292a2d; --ink:#e8eaed; --muted:#9aa0a6;
+  --line:#3c4043; --hover:#35363a;
+  --accent:#8ab4f8; --accent-soft:#283b5b; --on-accent:#8ab4f8;
+  --new:#81c995; --new-soft:#1e3a29; --upd:#8ab4f8; --upd-soft:#1f3a5f;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   -webkit-text-size-adjust:100%;
-  font:15px/1.65 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;}
+  font:14px/1.6 "Google Sans",Roboto,-apple-system,BlinkMacSystemFont,
+       "Hiragino Sans","Noto Sans JP",sans-serif;}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
-.head{padding:26px 24px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
-.head h1{margin:0 0 6px;font-size:21px;letter-spacing:.01em}
-.sub{color:var(--muted);font-size:13px}
-.stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px}
-.stat b{font-size:20px;font-variant-numeric:tabular-nums}
-.stat span{display:block;color:var(--muted);font-size:12px}
+/* 上部バー */
+.head{background:var(--panel);border-bottom:1px solid var(--line);padding:16px 24px}
+.head h1{margin:0;font-size:22px;font-weight:400;letter-spacing:0}
+.sub{color:var(--muted);font-size:12px;margin-top:4px}
 
-.wrap{display:grid;grid-template-columns:250px 1fr}
-.side{padding:20px 16px;border-right:1px solid var(--line);
-  position:sticky;top:0;max-height:100vh;overflow:auto}
-.gtitle{font-size:11px;letter-spacing:.08em;color:var(--muted);
-  text-transform:uppercase;margin:18px 0 8px}
-.chip{display:flex;justify-content:space-between;gap:8px;width:100%;
-  padding:6px 10px;margin:2px 0;border:0;border-radius:7px;background:transparent;
-  color:var(--ink);font:inherit;font-size:13.5px;text-align:left;cursor:pointer}
-.chip:hover{background:var(--accent-soft)}
-.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);font-weight:600}
+.wrap{display:grid;grid-template-columns:256px 1fr;align-items:start}
+
+/* 左のカテゴリ一覧。選択中はピル型に色が付く */
+.side{background:var(--panel);border-right:1px solid var(--line);
+  padding:12px 0 40px;position:sticky;top:0;max-height:100vh;overflow:auto}
+.gtitle{font-size:11px;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;
+  padding:0 24px;margin:18px 0 4px}
+.chip{display:flex;justify-content:space-between;align-items:center;gap:8px;
+  width:calc(100% - 12px);min-height:36px;padding:6px 24px;border:0;
+  border-radius:0 20px 20px 0;background:transparent;color:var(--ink);
+  font:inherit;font-size:13px;text-align:left;cursor:pointer}
+.chip:hover{background:var(--hover)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--on-accent);
+  font-weight:500}
 .chip .n{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
-.chip[aria-pressed="true"] .n{color:var(--on-accent);opacity:.75}
+.chip[aria-pressed="true"] .n{color:var(--on-accent)}
 
 main{padding:20px 24px 60px;min-width:0}
-.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
-input[type=search],select{padding:9px 11px;border:1px solid var(--line);border-radius:8px;
-  background:var(--panel);color:var(--ink);font:inherit;font-size:14px;max-width:100%}
+
+/* 数値カード */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
+  gap:12px;margin:0 0 16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:14px 16px}
+.stat b{display:block;font-size:26px;font-weight:400;line-height:1.2;
+  font-variant-numeric:tabular-nums}
+.stat span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+/* 検索・並び替えの帯 */
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:12px 16px;margin-bottom:16px}
+input[type=search],select{height:36px;padding:0 12px;border:1px solid var(--line);
+  border-radius:4px;background:var(--panel);color:var(--ink);font:inherit;
+  font-size:14px;max-width:100%}
 input[type=search]{flex:1;min-width:170px}
+input[type=search]:focus,select:focus{outline:none;border-color:var(--accent);
+  box-shadow:0 0 0 1px var(--accent)}
 #catsel{display:none}
 .count{color:var(--muted);font-size:13px;margin-left:auto;
   font-variant-numeric:tabular-nums;white-space:nowrap}
 
-.glabel{font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;
-  margin:26px 0 10px;border-top:1px solid var(--line);padding-top:14px}
-.sec{margin:0 0 30px}
-.sec h2{font-size:15px;margin:0 0 4px;display:flex;flex-wrap:wrap;
-  align-items:baseline;gap:9px}
+/* 大分類の見出しと、カテゴリごとのカード */
+.glabel{font-size:11px;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;
+  margin:24px 0 8px;padding-left:4px}
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+  padding:4px 20px 12px;margin:0 0 12px}
+.sec h2{font-size:14px;font-weight:500;margin:0;padding:12px 0;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;
+  border-bottom:1px solid var(--line)}
 .sec h2 .n{font-size:12px;color:var(--muted);font-weight:400;
   font-variant-numeric:tabular-nums}
 .more{border:0;background:transparent;color:var(--accent);font:inherit;font-size:12px;
   cursor:pointer;padding:0;margin-left:auto;text-align:left}
 .more:hover{text-decoration:underline}
 
-ul{list-style:none;margin:8px 0 0;padding:0}
-li.item{padding:11px 0;border-top:1px solid var(--line)}
+ul{list-style:none;margin:0;padding:0}
+li.item{padding:12px 0;border-top:1px solid var(--line)}
 li.item:first-child{border-top:0}
-.t{font-size:15px;font-weight:600;text-decoration:none;line-height:1.45;
-  text-wrap:balance}
-.t:hover{color:var(--accent)}
-.jp{display:block;margin-top:3px;font-size:13.5px;color:var(--accent);
+.t{font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;
+  line-height:1.45;text-wrap:balance}
+.t:hover{text-decoration:underline}
+.jp{display:block;margin-top:3px;font-size:13px;color:var(--muted);
   text-decoration:none;line-height:1.5}
-.jp:hover{text-decoration:underline}
+.jp:hover{color:var(--accent);text-decoration:underline}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
-  color:var(--muted);font-size:12px;margin-top:5px}
-.tag{padding:2px 8px;border:1px solid var(--line);border-radius:20px;cursor:pointer}
+  color:var(--muted);font-size:12px;margin-top:6px}
+.tag{padding:2px 10px;border:1px solid var(--line);border-radius:16px;cursor:pointer}
 .tag:hover{border-color:var(--accent);color:var(--accent)}
-.badge{padding:2px 8px;border-radius:20px;font-weight:700;font-size:11px}
+.badge{padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px}
 .badge.new{background:var(--new-soft);color:var(--new)}
 .badge.upd{background:var(--upd-soft);color:var(--upd)}
 .ex{color:var(--muted);font-size:13px;margin-top:4px;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .empty{color:var(--muted);padding:40px 0;text-align:center}
-.note{color:var(--muted);font-size:12px;margin-top:30px;padding-top:14px;
-  border-top:1px solid var(--line)}
+.note{color:var(--muted);font-size:12px;margin-top:24px;padding-left:4px}
 
 /* 携帯・タブレット：サイドバーをやめ、上部の操作バーだけで絞り込む */
 @media (max-width:820px){
-  .head{padding:18px 16px 14px}
+  .head{padding:14px 16px}
   .head h1{font-size:18px}
-  .stats{gap:14px;margin-top:11px}
-  .stat b{font-size:17px}
   .wrap{grid-template-columns:1fr}
   .side{display:none}
-  main{padding:0 16px 50px}
-  .bar{position:sticky;top:0;z-index:5;background:var(--bg);
-    padding:12px 0 11px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  main{padding:16px 12px 50px}
+  .stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat{padding:12px 14px}
+  .stat b{font-size:22px}
+  .bar{position:sticky;top:0;z-index:5;padding:12px}
   input[type=search]{flex:1 1 100%;font-size:16px}  /* 16px未満だとiOSで拡大される */
   #catsel{display:block;flex:1 1 auto;min-width:0;font-size:16px}
   #sort{flex:0 1 auto;min-width:0;font-size:16px}
   .count{flex:1 1 100%;margin-left:0}
-  .glabel{margin:20px 0 8px}
-  .sec{margin-bottom:24px}
+  .sec{padding:4px 14px 10px}
   .more{flex:1 1 100%;margin-left:0}
-  .t{font-size:16px}
-  li.item{padding:13px 0}
+  .t{font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important}}
 </style>
@@ -254,12 +277,12 @@ li.item:first-child{border-top:0}
 MARKUP = r"""<div class="head">
   <h1>GTO Wizard ブログ記事マップ</h1>
   <div class="sub" id="sub"></div>
-  <div class="stats" id="stats"></div>
 </div>
 
 <div class="wrap">
   <aside class="side" id="nav"></aside>
   <main>
+    <div class="stats" id="stats"></div>
     <div class="bar">
       <input type="search" id="q" placeholder="タイトル・本文冒頭で検索"
              aria-label="記事を検索">
@@ -392,7 +415,7 @@ function render(){
   const list = document.getElementById('list');
 
   if (!hits.length) {
-    list.innerHTML = `<p class="empty">該当する記事がありません。</p>`;
+    list.innerHTML = `<section class="sec"><p class="empty">該当する記事がありません。</p></section>`;
   } else if (filter === 'all' && !query) {
     /* 「すべて」のときはカテゴリごとに章立てして並べる */
     let h = '';
@@ -412,7 +435,8 @@ function render(){
     });
     list.innerHTML = h;
   } else {
-    list.innerHTML = `<ul>` + ordered(hits).map(card).join('') + `</ul>`;
+    list.innerHTML = `<section class="sec"><ul>`
+      + ordered(hits).map(card).join('') + `</ul></section>`;
   }
 
   list.onclick = e => {
