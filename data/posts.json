@@ -1,9 +1,49 @@
 {
  "schema": 1,
- "runs": 5,
+ "runs": 6,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-08-10T05:08:00+00:00",
+ "last_run_at": "2026-08-10T05:11:02+00:00",
  "posts": {
+  "6a71689ebb8e4d00011d00d9": {
+   "id": "6a71689ebb8e4d00011d00d9",
+   "title": "Exploiting Profiles: Episode III – The Maniac",
+   "url": "https://blog.gtowizard.com/exploiting-profiles-episode-iii-the-maniac/",
+   "excerpt": "There's a maniac at your table.   They bet every street, call everything, and somehow keep winning pots they have no business being in.  So what's the adjustment? Do you start blasting back?",
+   "published_at": "2026-08-04T09:12:02.000+02:00",
+   "updated_at": "2026-08-04T09:12:02.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "exploit",
+     "name": "Exploit"
+    },
+    {
+     "slug": "profiles",
+     "name": "Profiles"
+    }
+   ],
+   "first_seen": "2026-08-10T05:11:02+00:00",
+   "added_in_run": 6,
+   "last_changed": null
+  },
+  "6a5f7efdbb8e4d00011cff76": {
+   "id": "6a5f7efdbb8e4d00011cff76",
+   "title": "PLO Upgrades: Custom HU Solving, Postflop ICM, Nodelocking & More",
+   "url": "https://blog.gtowizard.com/plo-upgrades-custom-hu-solving-postflop-icm-nodelocking-more/",
+   "excerpt": "These upgrades have rolled out over the past two months. Taken together, they represent a massive expansion of PLO at GTO Wizard, including tools that don’t exist in any other PLO solver. Here’s everything that’s changed since launch.",
+   "published_at": "2026-07-27T14:00:00.000+02:00",
+   "updated_at": "2026-07-27T15:15:24.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "patch-notes",
+     "name": "Patch notes"
+    }
+   ],
+   "first_seen": "2026-08-10T05:11:02+00:00",
+   "added_in_run": 6,
+   "last_changed": null
+  },
   "6a54b90ebb8e4d00011cfeb1": {
    "id": "6a54b90ebb8e4d00011cfeb1",
    "title": "Playing Under 10bb – Part 2: ICM",
