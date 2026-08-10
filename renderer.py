@@ -136,90 +136,85 @@ PAGE_TITLE = "<title>GTO Wizard ブログ記事マップ</title>\n"
 
 
 STYLE = r"""<style>
-/* 配色は Google Search Console に合わせている。
-   明るいテーマ：白いカードを薄いグレー地に置き、青をアクセントにする */
+/* 配色は GTO Wizard 公式サイトのCSSから取った値を使っている。
+   黒地(#0f0f0f)にミントグリーン(#aafbb2)を差すのが同社の識別色。
+   本家が暗いテーマ主体なので、このページも暗いテーマ1本に絞っている。 */
 :root{
-  --bg:#e9eef6; --panel:#ffffff; --ink:#1f1f1f; --muted:#5f6368;
-  --line:#dde3ea; --hover:#f0f4f9;
-  --accent:#0b57d0; --accent-soft:#d3e3fd; --on-accent:#041e49;
-  --new:#0f6b3a; --new-soft:#d7f0e0; --upd:#0b57d0; --upd-soft:#d3e3fd;
-}
-/* 端末が暗いテーマのとき（明るいテーマを明示指定した場合は除く） */
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#131314; --panel:#1e1f20; --ink:#e3e3e3; --muted:#c4c7c5;
-    --line:#37393b; --hover:#2d2f31;
-    --accent:#a8c7fa; --accent-soft:#0842a0; --on-accent:#d3e3fd;
-    --new:#6dd58c; --new-soft:#123a20; --upd:#a8c7fa; --upd-soft:#0842a0;
-  }
-}
-/* 暗いテーマを明示指定したとき */
-:root[data-theme="dark"]{
-    --bg:#131314; --panel:#1e1f20; --ink:#e3e3e3; --muted:#c4c7c5;
-  --line:#37393b; --hover:#2d2f31;
-  --accent:#a8c7fa; --accent-soft:#0842a0; --on-accent:#d3e3fd;
-  --new:#6dd58c; --new-soft:#123a20; --upd:#a8c7fa; --upd-soft:#0842a0;
+  --bg:#0f0f0f;        /* --color-black */
+  --panel:#202022;     /* --color-light-black */
+  --ink:#fdfdfd;       /* --color-white */
+  --muted:#b3b3b8;     /* --color-light-grey */
+  --dim:#8b8b93;       /* --color-dark-grey を少し明るくして可読性を確保 */
+  --line:#2c2c30;
+  --hover:#2a2a2d;
+  --accent:#aafbb2;    /* --color-accent */
+  --accent-dim:#6d9e72;/* --color-accent-dark */
+  --accent-soft:#1b2a1e;
+  --on-accent:#0f0f0f;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
   -webkit-text-size-adjust:100%;
-  font:14px/1.6 "Google Sans",Roboto,-apple-system,BlinkMacSystemFont,
+  font:14px/1.6 -apple-system,BlinkMacSystemFont,"Helvetica Neue",
        "Hiragino Sans","Noto Sans JP",sans-serif;}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
 /* 上部バー */
-.head{background:var(--panel);padding:16px 24px}
-.head h1{margin:0;font-size:22px;font-weight:400;letter-spacing:0}
-.sub{color:var(--muted);font-size:12px;margin-top:4px}
+.head{background:var(--bg);border-bottom:1px solid var(--line);padding:18px 24px}
+.head h1{margin:0;font-size:21px;font-weight:600;letter-spacing:.01em}
+.sub{color:var(--muted);font-size:12px;margin-top:5px}
 
-.wrap{display:grid;grid-template-columns:256px 1fr;align-items:start}
+.wrap{display:grid;grid-template-columns:252px 1fr;align-items:start}
 
-/* 左のカテゴリ一覧。選択中はピル型に色が付く */
-.side{background:var(--panel);padding:12px 0 40px;
-  position:sticky;top:0;max-height:100vh;overflow:auto}
-.gtitle{font-size:11px;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;
-  padding:0 30px;margin:18px 0 4px}
+/* 左のカテゴリ一覧。選択中はミントのピル */
+.side{background:var(--bg);border-right:1px solid var(--line);
+  padding:14px 0 40px;position:sticky;top:0;max-height:100vh;overflow:auto}
+.gtitle{font-size:10.5px;letter-spacing:.9px;color:var(--dim);text-transform:uppercase;
+  padding:0 26px;margin:20px 0 6px}
 .chip{display:flex;justify-content:space-between;align-items:center;gap:8px;
-  width:calc(100% - 24px);margin:0 12px;min-height:38px;padding:6px 18px;border:0;
-  border-radius:20px;background:transparent;color:var(--ink);
-  font:inherit;font-size:13px;text-align:left;cursor:pointer}
-.chip:hover{background:var(--hover)}
-.chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--on-accent);
-  font-weight:500}
+  width:calc(100% - 24px);margin:1px 12px;min-height:36px;padding:6px 16px;border:0;
+  border-radius:8px;background:transparent;color:var(--muted);
+  font:inherit;font-size:13px;text-align:left;cursor:pointer;transition:background .12s}
+.chip:hover{background:var(--hover);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);
+  font-weight:600}
 .chip .n{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
-.chip[aria-pressed="true"] .n{color:var(--on-accent)}
+.chip:hover .n{color:var(--muted)}
+.chip[aria-pressed="true"] .n{color:var(--on-accent);opacity:.7}
 
 main{padding:20px 24px 60px;min-width:0}
 
-/* 数値カード */
+/* 数値カード。数字をミントにして一目で読めるようにする */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));
-  gap:12px;margin:0 0 16px}
-.stat{background:var(--panel);border-radius:12px;padding:16px 18px}
-.stat b{display:block;font-size:26px;font-weight:400;line-height:1.2;
-  font-variant-numeric:tabular-nums}
-.stat span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+  gap:10px;margin:0 0 16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:15px 18px}
+.stat b{display:block;font-size:26px;font-weight:600;line-height:1.2;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.stat span{display:block;color:var(--muted);font-size:11.5px;margin-top:3px}
 
 /* 検索・並び替えの帯 */
 .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;
-  background:var(--panel);border-radius:12px;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
   padding:14px 18px;margin-bottom:16px}
 input[type=search],select{height:38px;padding:0 14px;border:1px solid var(--line);
-  border-radius:20px;background:var(--panel);color:var(--ink);font:inherit;
+  border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;
   font-size:14px;max-width:100%}
+input[type=search]::placeholder{color:var(--dim)}
 input[type=search]{flex:1;min-width:170px}
-input[type=search]:focus,select:focus{outline:none;border-color:var(--accent);
-  box-shadow:0 0 0 1px var(--accent)}
+input[type=search]:focus,select:focus{outline:none;border-color:var(--accent)}
 #catsel{display:none}
 .count{color:var(--muted);font-size:13px;margin-left:auto;
   font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* 大分類の見出しと、カテゴリごとのカード */
-.glabel{font-size:11px;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;
-  margin:24px 0 8px;padding-left:4px}
-.sec{background:var(--panel);border-radius:12px;padding:6px 22px 14px;margin:0 0 12px}
-.sec h2{font-size:17px;font-weight:400;margin:0;padding:14px 0;
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;
+.glabel{font-size:10.5px;letter-spacing:.9px;color:var(--dim);text-transform:uppercase;
+  margin:26px 0 8px;padding-left:4px}
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:6px 22px 14px;margin:0 0 10px}
+.sec h2{font-size:16px;font-weight:600;margin:0;padding:14px 0;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;
   border-bottom:1px solid var(--line)}
 .sec h2 .n{font-size:12px;color:var(--muted);font-weight:400;
   font-variant-numeric:tabular-nums}
@@ -228,25 +223,27 @@ input[type=search]:focus,select:focus{outline:none;border-color:var(--accent);
 .more:hover{text-decoration:underline}
 
 ul{list-style:none;margin:0;padding:0}
-li.item{padding:12px 0;border-top:1px solid var(--line)}
+li.item{padding:13px 0;border-top:1px solid var(--line)}
 li.item:first-child{border-top:0}
-.t{font-size:14px;font-weight:500;color:var(--accent);text-decoration:none;
+.t{font-size:14.5px;font-weight:600;color:var(--ink);text-decoration:none;
   line-height:1.45;text-wrap:balance}
-.t:hover{text-decoration:underline}
-.jp{display:block;margin-top:3px;font-size:13px;color:var(--muted);
+.t:hover{color:var(--accent)}
+.jp{display:block;margin-top:4px;font-size:13px;color:var(--muted);
   text-decoration:none;line-height:1.5}
 .jp:hover{color:var(--accent);text-decoration:underline}
 .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
   color:var(--muted);font-size:12px;margin-top:6px}
-.tag{padding:2px 10px;border:1px solid var(--line);border-radius:16px;cursor:pointer}
-.tag:hover{border-color:var(--accent);color:var(--accent)}
-.badge{padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px}
-.badge.new{background:var(--new-soft);color:var(--new)}
-.badge.upd{background:var(--upd-soft);color:var(--upd)}
-.ex{color:var(--muted);font-size:13px;margin-top:4px;
+.tag{padding:2px 10px;border:1px solid var(--line);border-radius:14px;
+  color:var(--muted);cursor:pointer}
+.tag:hover{border-color:var(--accent-dim);color:var(--accent)}
+.badge{padding:2px 8px;border-radius:5px;font-weight:700;font-size:11px}
+.badge.new{background:var(--accent);color:var(--on-accent)}
+.badge.upd{background:var(--accent-soft);color:var(--accent);
+  border:1px solid var(--accent-dim)}
+.ex{color:var(--muted);font-size:13px;margin-top:5px;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .empty{color:var(--muted);padding:40px 0;text-align:center}
-.note{color:var(--muted);font-size:12px;margin-top:24px;padding-left:4px}
+.note{color:var(--muted);font-size:12px;margin-top:26px;padding-left:4px}
 
 /* 携帯・タブレット：サイドバーをやめ、上部の操作バーだけで絞り込む */
 @media (max-width:820px){
@@ -263,11 +260,11 @@ li.item:first-child{border-top:0}
   #catsel{display:block;flex:1 1 auto;min-width:0;font-size:16px}
   #sort{flex:0 1 auto;min-width:0;font-size:16px}
   .count{flex:1 1 100%;margin-left:0}
-  .sec{padding:4px 14px 10px}
+  .sec{padding:6px 14px 10px}
   .more{flex:1 1 100%;margin-left:0}
   .t{font-size:15px}
 }
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto !important}}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
 </style>
 """
 
