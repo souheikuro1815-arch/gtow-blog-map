@@ -1,0 +1,9 @@
+# 自動生成されるもの（実行すれば作り直せるので記録しない）
+記事一覧.html
+site/
+data/公開用.html
+data/自動実行.log
+
+# macOS
+.DS_Store
+__pycache__/

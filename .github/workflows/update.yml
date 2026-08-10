@@ -1,0 +1,62 @@
+name: 記事一覧を更新して公開
+
+on:
+  # 毎週月曜の朝9時7分（日本時間）に自動実行。GitHubの時刻はUTCなので月曜0:07を指定
+  schedule:
+    - cron: "7 0 * * 1"
+  # 「Run workflow」ボタンで手動実行もできる
+  workflow_dispatch:
+  # コードを直したときも作り直す
+  push:
+    branches: [main]
+
+# 公開ページの更新は1つずつ順番に行う
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 取得結果(data/)をリポジトリに書き戻すため
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 記事を取得して一覧ページを作る
+        run: python update.py
+
+      - name: 取得結果を記録する
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/posts.json data/history.jsonl
+          if git diff --staged --quiet; then
+            echo "変更なし（新着なし）"
+          else
+            git commit -m "記事一覧を更新 $(date -u +'%Y-%m-%d')"
+            git push
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
