@@ -1,9 +1,32 @@
 {
  "schema": 1,
- "runs": 13,
+ "runs": 14,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-08-17T01:51:47+00:00",
+ "last_run_at": "2026-08-24T01:54:12+00:00",
  "posts": {
+  "6a7e645dbb8e4d00011d015c": {
+   "id": "6a7e645dbb8e4d00011d015c",
+   "title": "Exploiting Profiles: Episode IV – The TAG",
+   "url": "https://blog.gtowizard.com/exploiting-profiles-episode-iv-the-tag/",
+   "excerpt": "They're not a fish. They're not a maniac.  The TAG reg is the opponent you'll face most often, yet most players have no idea how to exploit them.",
+   "published_at": "2026-08-17T15:54:22.000+02:00",
+   "updated_at": "2026-08-17T15:54:22.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "exploit",
+     "name": "Exploit"
+    },
+    {
+     "slug": "profiles",
+     "name": "Profiles"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-08-24T01:54:12+00:00",
+   "added_in_run": 14,
+   "last_changed": null
+  },
   "6a71689ebb8e4d00011d00d9": {
    "id": "6a71689ebb8e4d00011d00d9",
    "title": "Exploiting Profiles: Episode III – The Maniac",
@@ -4708,7 +4731,10 @@
      "name": "Theory"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "リンプポットをどうプレイするか",
+    "url": "https://japan.gtowizard.com/blog/is-limping-pimping/"
+   },
    "first_seen": "2023-12-08T05:00:38.000+01:00",
    "added_in_run": 0,
    "last_changed": null
@@ -7238,7 +7264,7 @@
    "url": "https://blog.gtowizard.com/how-to-solve-toy-games/",
    "excerpt": "Poker is a complicated game. It’s impossible to calculate GTO strategies on the fly. By reducing it to a toy game, we can solve it by hand, and learn the fundamental incentives of game theory optimal poker.",
    "published_at": "2022-07-11T00:00:00.000+02:00",
-   "updated_at": "2026-03-14T16:39:32.000+01:00",
+   "updated_at": "2026-08-19T15:48:59.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -7252,7 +7278,7 @@
    },
    "first_seen": "2022-07-11T00:00:00.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-08-24T01:54:12+00:00"
   },
   "6930b2c25ec9b30001754f3e": {
    "id": "6930b2c25ec9b30001754f3e",

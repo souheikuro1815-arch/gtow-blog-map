@@ -10,3 +10,4 @@
 {"at": "2026-08-10T05:45:40+00:00", "run": 11, "baseline": false, "total": 364, "added": [], "updated": [], "removed": [], "translated": [], "jp_total": 157}
 {"at": "2026-08-10T07:48:00+00:00", "run": 12, "baseline": false, "total": 364, "added": [], "updated": [], "removed": [], "translated": [], "jp_total": 157}
 {"at": "2026-08-17T01:51:47+00:00", "run": 13, "baseline": false, "total": 364, "added": [], "updated": [], "removed": [], "translated": [], "jp_total": 157}
+{"at": "2026-08-24T01:54:12+00:00", "run": 14, "baseline": false, "total": 365, "added": [{"title": "Exploiting Profiles: Episode IV – The TAG", "url": "https://blog.gtowizard.com/exploiting-profiles-episode-iv-the-tag/"}], "updated": [{"title": "How to Solve Toy Games", "url": "https://blog.gtowizard.com/how-to-solve-toy-games/"}], "removed": [], "translated": [{"title": "Is Limping Pimping?", "jp": "リンプポットをどうプレイするか"}], "jp_total": 158}
