@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "runs": 14,
+ "runs": 15,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-08-24T01:54:12+00:00",
+ "last_run_at": "2026-08-31T05:24:37+00:00",
  "posts": {
   "6a7e645dbb8e4d00011d015c": {
    "id": "6a7e645dbb8e4d00011d015c",
@@ -755,7 +755,10 @@
      "name": "Spin"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "IPでドローをベットする本当の基準",
+    "url": "https://japan.gtowizard.com/blog/betting-draws-in-position-the-real-rules/"
+   },
    "first_seen": "2025-12-01T12:18:47.000+01:00",
    "added_in_run": 0,
    "last_changed": null
