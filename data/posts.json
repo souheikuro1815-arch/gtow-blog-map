@@ -1,9 +1,32 @@
 {
  "schema": 1,
- "runs": 15,
+ "runs": 16,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-08-31T05:24:37+00:00",
+ "last_run_at": "2026-09-07T04:28:00+00:00",
  "posts": {
+  "6a8aa752bb8e4d00011d019c": {
+   "id": "6a8aa752bb8e4d00011d019c",
+   "title": "Exploiting Profiles: Episode V – The LAG",
+   "url": "https://blog.gtowizard.com/exploiting-profiles-episode-v-the-lag/",
+   "excerpt": "LAG players are uncomfortable to play against. They barrel, they lead, they never seem to fold, and somehow they keep winning pots they have no business being in.   In this article you'll learn how to perfectly exploit them so you start taking their money instead.",
+   "published_at": "2026-08-31T14:39:01.000+02:00",
+   "updated_at": "2026-08-31T14:38:59.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "exploit",
+     "name": "Exploit"
+    },
+    {
+     "slug": "profiles",
+     "name": "Profiles"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-09-07T04:28:00+00:00",
+   "added_in_run": 16,
+   "last_changed": null
+  },
   "6a7e645dbb8e4d00011d015c": {
    "id": "6a7e645dbb8e4d00011d015c",
    "title": "Exploiting Profiles: Episode IV – The TAG",
@@ -22,7 +45,10 @@
      "name": "Profiles"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "プロファイル別エクスプロイト 第4回｜TAG",
+    "url": "https://japan.gtowizard.com/blog/exploiting-profiles-episode-iv-the-tag/"
+   },
    "first_seen": "2026-08-24T01:54:12+00:00",
    "added_in_run": 14,
    "last_changed": null
@@ -45,7 +71,10 @@
      "name": "Profiles"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "プロファイル別エクスプロイト 第3回｜マニアック",
+    "url": "https://japan.gtowizard.com/blog/exploiting-profiles-episode-iii-the-maniac/"
+   },
    "first_seen": "2026-08-04T09:12:02.000+02:00",
    "added_in_run": 0,
    "last_changed": null
@@ -5589,7 +5618,7 @@
    "url": "https://blog.gtowizard.com/gto-wizard-ai-benchmarks/",
    "excerpt": "GTO Wizard has combined the power of artificial intelligence with traditional solving methods to bring you high-quality GTO poker solutions at incredible speeds. What used to take hours of computation on high-end hardware can now be done in seconds from your browser! This fantastic advancement natur",
    "published_at": "2023-07-19T05:00:12.000+02:00",
-   "updated_at": "2026-07-30T01:38:24.000+02:00",
+   "updated_at": "2026-09-06T23:32:15.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -5603,7 +5632,7 @@
    },
    "first_seen": "2023-07-19T05:00:12.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-09-07T04:28:00+00:00"
   },
   "6930b2a95ec9b30001754e8e": {
    "id": "6930b2a95ec9b30001754e8e",
