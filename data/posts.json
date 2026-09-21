@@ -1,9 +1,32 @@
 {
  "schema": 1,
- "runs": 17,
+ "runs": 18,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-09-14T04:47:27+00:00",
+ "last_run_at": "2026-09-21T04:47:38+00:00",
  "posts": {
+  "6aa5a9b4b3c1f80001729e2f": {
+   "id": "6aa5a9b4b3c1f80001729e2f",
+   "title": "Now Live: Preflop ICM Solving",
+   "url": "https://blog.gtowizard.com/preflop-icm-solving/",
+   "excerpt": "Solve any tournament spot in seconds: your own stacks, antes, payouts, and bounties, up to 9 players and 250bb deep, in fields as large as 4,096 runners.   Nodelock opponents, compare ICM against chip EV, and carry the ranges into 3-way postflop.",
+   "published_at": "2026-09-15T12:49:41.000+02:00",
+   "updated_at": "2026-09-20T20:49:15.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "patch-notes",
+     "name": "Patch notes"
+    },
+    {
+     "slug": "icm",
+     "name": "ICM"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-09-21T04:47:38+00:00",
+   "added_in_run": 18,
+   "last_changed": null
+  },
   "6a8aa752bb8e4d00011d019c": {
    "id": "6a8aa752bb8e4d00011d019c",
    "title": "Exploiting Profiles: Episode V – The LAG",
@@ -85,7 +108,7 @@
    "url": "https://blog.gtowizard.com/plo-upgrades-custom-hu-solving-postflop-icm-nodelocking-more/",
    "excerpt": "These upgrades have rolled out over the past two months. Taken together, they represent a massive expansion of PLO at GTO Wizard, including tools that don’t exist in any other PLO solver. Here’s everything that’s changed since launch.",
    "published_at": "2026-07-27T14:00:00.000+02:00",
-   "updated_at": "2026-07-27T15:15:24.000+02:00",
+   "updated_at": "2026-09-16T11:34:57.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -96,7 +119,7 @@
    "jp": null,
    "first_seen": "2026-07-27T14:00:00.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-09-21T04:47:38+00:00"
   },
   "6a54b90ebb8e4d00011cfeb1": {
    "id": "6a54b90ebb8e4d00011cfeb1",
@@ -7436,7 +7459,7 @@
    "url": "https://blog.gtowizard.com/icm-basics/",
    "excerpt": "As a tournament player, you may have heard about the concept of “ICM”, but what does this actually mean?",
    "published_at": "2022-06-16T00:00:00.000+02:00",
-   "updated_at": "2026-05-03T15:26:45.000+02:00",
+   "updated_at": "2026-09-17T14:56:05.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -7454,7 +7477,7 @@
    },
    "first_seen": "2022-06-16T00:00:00.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-09-21T04:47:38+00:00"
   },
   "6930b2c25ec9b30001754f44": {
    "id": "6930b2c25ec9b30001754f44",
