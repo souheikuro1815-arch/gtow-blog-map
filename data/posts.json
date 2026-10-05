@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "runs": 19,
+ "runs": 20,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-09-28T05:15:07+00:00",
+ "last_run_at": "2026-10-05T05:27:42+00:00",
  "posts": {
   "6a9ddf6f1ccc630001a623b1": {
    "id": "6a9ddf6f1ccc630001a623b1",
@@ -270,7 +270,7 @@
    "url": "https://blog.gtowizard.com/plo-just-changed-forever/",
    "excerpt": "Five years ago, we built GTO Wizard and changed how the world studies Texas Hold'em. Today, it is PLO's turn.",
    "published_at": "2026-05-12T13:20:00.000+02:00",
-   "updated_at": "2026-07-27T15:15:46.000+02:00",
+   "updated_at": "2026-09-29T01:26:55.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -281,7 +281,7 @@
    "jp": null,
    "first_seen": "2026-05-12T13:20:00.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-10-05T05:27:42+00:00"
   },
   "6a01a1d7d38e2e00019c347b": {
    "id": "6a01a1d7d38e2e00019c347b",
@@ -1504,7 +1504,10 @@
      "name": "Theory"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "そのハンドの価値は？ シンバリューからオールインまで",
+    "url": "https://japan.gtowizard.com/blog/whats_your_hand_worth_from_thin_value_to_playing_for_stacks/"
+   },
    "first_seen": "2025-06-23T17:10:27.000+02:00",
    "added_in_run": 0,
    "last_changed": null
@@ -5381,7 +5384,7 @@
    "url": "https://blog.gtowizard.com/dynamic-sizing-a-gto-breakthrough/",
    "excerpt": "Dynamic Sizing is a revolutionary new poker algorithm that automatically simplifies your strategy with the highest EV bet size(s) at each decision point! A simple strategy executed well will invariably outperform a complex strategy executed poorly. Learning from GTO solutions with too many bet sizes",
    "published_at": "2023-08-21T05:00:49.000+02:00",
-   "updated_at": "2026-03-23T14:52:56.000+01:00",
+   "updated_at": "2026-09-30T14:33:08.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -5395,7 +5398,7 @@
    },
    "first_seen": "2023-08-21T05:00:49.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-10-05T05:27:42+00:00"
   },
   "6930b2958d8a230001b5e54e": {
    "id": "6930b2958d8a230001b5e54e",
