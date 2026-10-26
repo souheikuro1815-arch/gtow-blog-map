@@ -1,9 +1,63 @@
 {
  "schema": 1,
- "runs": 22,
+ "runs": 23,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-10-19T04:30:49+00:00",
+ "last_run_at": "2026-10-26T04:36:19+00:00",
  "posts": {
+  "6adad5f449aef3000111c74d": {
+   "id": "6adad5f449aef3000111c74d",
+   "title": "Custom Solutions Upgrade and Easier Preflop ICM Setup",
+   "url": "https://blog.gtowizard.com/custom-solutions-upgrade-and-easier-preflop-icm-setup/",
+   "excerpt": "Custom solutions now go 1,000bb deep, GTO Wizard AI can choose your 3-way bet sizes, and you can load any tournament spot directly from a hand history.",
+   "published_at": "2026-10-23T09:55:28.000+02:00",
+   "updated_at": "2026-10-23T11:45:24.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "patch-notes",
+     "name": "Patch notes"
+    },
+    {
+     "slug": "custom-solving",
+     "name": "Custom solving"
+    },
+    {
+     "slug": "preflop-icm",
+     "name": "Preflop ICM"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-10-26T04:36:19+00:00",
+   "added_in_run": 23,
+   "last_changed": null
+  },
+  "6acf7b179edad600018a7351": {
+   "id": "6acf7b179edad600018a7351",
+   "title": "How to Exploit Capped Ranges with Custom Aggregated Reports",
+   "url": "https://blog.gtowizard.com/how-to-exploit-capped-ranges-with-custom-aggregated-reports/",
+   "excerpt": "Have you ever considered how capping your range preflop would shift your postflop strategy?  In this article, Barry Carter uses Custom Aggregated Reports to analyze the global cost of capping your preflop range by excluding specific hand classes from your raising range.",
+   "published_at": "2026-10-21T06:51:41.000+02:00",
+   "updated_at": "2026-10-21T06:51:41.000+02:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "gto-application",
+     "name": "gto application"
+    },
+    {
+     "slug": "reports",
+     "name": "Reports"
+    },
+    {
+     "slug": "capped-ranges",
+     "name": "Capped Ranges"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-10-26T04:36:19+00:00",
+   "added_in_run": 23,
+   "last_changed": null
+  },
   "6ac2e483de6c1b000186a35c": {
    "id": "6ac2e483de6c1b000186a35c",
    "title": "Responding to 3-bets in Straddle+Ante Games",
@@ -64,7 +118,7 @@
    "url": "https://blog.gtowizard.com/preflop-icm-solving/",
    "excerpt": "Solve any tournament spot in seconds: your own stacks, antes, payouts, and bounties, up to 9 players and 250bb deep, in fields as large as 4,096 runners.   Nodelock opponents, compare ICM against chip EV, and carry the ranges into 3-way postflop.",
    "published_at": "2026-09-15T12:49:41.000+02:00",
-   "updated_at": "2026-09-20T20:49:15.000+02:00",
+   "updated_at": "2026-10-23T11:45:14.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -79,7 +133,7 @@
    "jp": null,
    "first_seen": "2026-09-21T04:47:38+00:00",
    "added_in_run": 18,
-   "last_changed": null
+   "last_changed": "2026-10-26T04:36:19+00:00"
   },
   "6a8aa752bb8e4d00011d019c": {
    "id": "6a8aa752bb8e4d00011d019c",
@@ -589,7 +643,10 @@
      "name": "Spin"
     }
    ],
-   "jp": null,
+   "jp": {
+    "title": "そのペア、チェックで終わらせていませんか？",
+    "url": "https://japan.gtowizard.com/blog/the-art-of-value-bluffing-from-the-button/"
+   },
    "first_seen": "2026-02-16T13:22:00.000+01:00",
    "added_in_run": 0,
    "last_changed": null
@@ -1354,7 +1411,7 @@
    "url": "https://blog.gtowizard.com/gto_wizard_ai_3_way_benchmarks/",
    "excerpt": "3-way postflop custom solutions are finally out! For the first time ever, you can solve Chip EV and raked 3-way solutions in seconds. In this article, we’ll provide comprehensive benchmarks of our 3-way solver’s precision and speed so that you know what to expect when using GTOWizard AI.",
    "published_at": "2025-08-05T13:15:32.000+02:00",
-   "updated_at": "2026-04-09T11:47:21.000+02:00",
+   "updated_at": "2026-10-22T12:06:20.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -1365,7 +1422,7 @@
    "jp": null,
    "first_seen": "2025-08-05T13:15:32.000+02:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-10-26T04:36:19+00:00"
   },
   "6930b2098d8a230001b5e26e": {
    "id": "6930b2098d8a230001b5e26e",
@@ -2221,7 +2278,7 @@
    "url": "https://blog.gtowizard.com/how-to-respond-to-large-preflop-raises-in-poker/",
    "excerpt": "Solver-derived preflop charts for both cash games and tournaments have historically assumed small raises on the part of the original raiser, usually two to three times the big blind. There are good reasons to use such small raise sizes at a table full of savvy, studied players. In tournaments, small",
    "published_at": "2025-02-17T05:00:00.000+01:00",
-   "updated_at": "2026-04-16T13:59:12.000+02:00",
+   "updated_at": "2026-10-21T11:42:11.000+02:00",
    "reading_time": 0,
    "tags": [
     {
@@ -2236,7 +2293,7 @@
    "jp": null,
    "first_seen": "2025-02-17T05:00:00.000+01:00",
    "added_in_run": 0,
-   "last_changed": null
+   "last_changed": "2026-10-26T04:36:19+00:00"
   },
   "6930b2255ec9b30001754bf1": {
    "id": "6930b2255ec9b30001754bf1",
