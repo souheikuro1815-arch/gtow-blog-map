@@ -1,9 +1,32 @@
 {
  "schema": 1,
- "runs": 25,
+ "runs": 26,
  "first_run_at": "2026-08-10T03:51:20+00:00",
- "last_run_at": "2026-11-09T06:08:54+00:00",
+ "last_run_at": "2026-11-16T06:14:39+00:00",
  "posts": {
+  "6ae7af5d7160b60001870085": {
+   "id": "6ae7af5d7160b60001870085",
+   "title": "The Biggest Failure of Modern Poker Theory",
+   "url": "https://blog.gtowizard.com/the-biggest-failure-of-modern-poker-theory/",
+   "excerpt": "Give 3 solvers the same spot and you'll get 3 different strategies, all near-unexploitable. 🤔  So if the combo frequencies and exploitability don't decide what makes a solution good, what does?",
+   "published_at": "2026-11-09T17:42:07.000+01:00",
+   "updated_at": "2026-11-09T17:42:07.000+01:00",
+   "reading_time": 0,
+   "tags": [
+    {
+     "slug": "poker-theory",
+     "name": "poker theory"
+    },
+    {
+     "slug": "exploit",
+     "name": "Exploit"
+    }
+   ],
+   "jp": null,
+   "first_seen": "2026-11-16T06:14:39+00:00",
+   "added_in_run": 26,
+   "last_changed": null
+  },
   "6adad5f449aef3000111c74d": {
    "id": "6adad5f449aef3000111c74d",
    "title": "Custom Solutions Upgrade and Easier Preflop ICM Setup",
